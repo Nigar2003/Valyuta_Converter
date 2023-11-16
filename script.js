@@ -5,23 +5,6 @@ let toInput = document.querySelector("#to-input");
 let baseCurrency = "AZN";
 const apiKey = "02b9297af21e3deb288542cd";
 
-fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/latest/${baseCurrency}`)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Something is wrong");
-    }
-    return response.json();
-  })
-  .then((data) => data["conversion_rates"])
-  .then((data) => {
-    const usdRate = data["USD"];
-    document.querySelector("#from-rate").innerHTML = (1 / usdRate).toFixed(4);
-    document.querySelector("#to-rate").innerHTML = usdRate.toFixed(4);
-  })
-  .catch((error) => {
-    console.log("Error something went wrong");
-  });
-
 document
   .querySelectorAll(".leftSide .currency-option-left")
   .forEach((option) => {
@@ -75,11 +58,6 @@ lefts.forEach((item) =>
         toInput.value = (
           data[activeCurrencyRight.innerHTML] * fromInput.value
         ).toFixed(4);
-        document.querySelector("#from-rate").innerHTML =
-          data[activeCurrencyRight.innerHTML].toFixed(4);
-        document.querySelector("#to-rate").innerHTML = (
-          1 / data[activeCurrencyRight.innerHTML]
-        ).toFixed(4);
       })
       .catch((error) => {
         console.log("Error something went wrong");
@@ -113,11 +91,7 @@ rights.forEach((item) =>
         fromInput.value = (
           data[activeCurrencyLeft.innerHTML] * toInput.value
         ).toFixed(4);
-        document.querySelector("#to-rate").innerHTML =
-          data[activeCurrencyLeft.innerHTML].toFixed(4);
-        document.querySelector("#from-rate").innerHTML = (
-          1 / data[activeCurrencyLeft.innerHTML]
-        ).toFixed(4);
+
       })
       .catch((error) => {
         console.log("Error something went wrong");
