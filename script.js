@@ -58,6 +58,7 @@ lefts.forEach((item) =>
         toInput.value = (
           data[activeCurrencyRight.innerHTML] * fromInput.value
         ).toFixed(4);
+
       })
       .catch((error) => {
         console.log("Error something went wrong");
